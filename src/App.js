@@ -1,23 +1,25 @@
 import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Products from './components/Products/Products';
+import AddProducts from './components/AddProducts/AddProducts';
+import UpdateProducts from './components/UpdateProducts/UpdateProducts';
+import Header from './components/Header/Header';
+import NotFound from './components/NotFound/NotFound';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+      <Header></Header>
+      <Routes>
+      <Route path="/" element={<Products />} />
+      <Route path="/products" element={<Products />} />
+      <Route path="/addProducts" element={<AddProducts />} />
+      <Route path="/products/update/:id" element={<UpdateProducts />} />
+      <Route path="*" element={<NotFound />} />
+      </Routes>
+      </BrowserRouter>
     </div>
   );
 }
